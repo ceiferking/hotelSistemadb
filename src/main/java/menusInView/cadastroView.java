@@ -1,5 +1,13 @@
 package menusInView;
 
+import dao.Conexao;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -73,6 +81,11 @@ public class cadastroView extends javax.swing.JFrame {
         jToggleButton1.setText("Salvar");
         jToggleButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jToggleButton1.setMargin(null);
+        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 90, 30));
 
         jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Users\\adm\\Documents\\NetBeansProjects\\hotelSistemadb\\src\\main\\java\\imagens\\view\\background2.png")); // NOI18N
@@ -85,6 +98,23 @@ public class cadastroView extends javax.swing.JFrame {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+
+        try {
+            Connection conexao = new Conexao().getconnection();
+            
+            String sql = "insert into hotel(usuario) values('usuario','12355'); ";
+            
+            CallableStatement statemant = conexao.prepareCall(sql);
+            statemant.execute();
+            
+            conexao.close();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(cadastroView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     /**
      * @param args the command line arguments
